@@ -1,4 +1,5 @@
 # Bookbot -- main.py - Analyize text versions of books and provide information (entry point).
+import sys
 from stats import book_word_count, character_counts, sorted_character_counts    
 
 def get_book_text(file_path):
@@ -7,8 +8,13 @@ def get_book_text(file_path):
 
     
 def main():
+    # Get command line arguments
+    if (len(sys.argv) != 2):
+        print(f"Usage: python3 {sys.argv[0]} <path_to_book>")
+        sys.exit(1)
+    book_path = sys.argv[1]
+    
     # Get book properties
-    book_path = "books/frankenstein.txt"
     book_text = get_book_text(book_path)
     word_count = book_word_count(book_text)
     char_counts = character_counts(book_text)
